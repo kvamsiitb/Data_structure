@@ -8,7 +8,7 @@ public:
     Node() = delete;
     Node(float data):n_next(nullptr), n_data(data){}
     ~Node(){
-         delete n_next;
+         // delete n_next; // @R causes recursive deletion
     }
     Node* n_next;
     float n_data;
@@ -19,7 +19,7 @@ class SLinkedList{
 public:
     SLinkedList()=delete;
     // Const
-    SLinkedList(float data) :  m_head ( new Node(data) {}
+    SLinkedList(float data) :  m_head ( new Node(data))  {}
     // Push_front
     void push_front(float data)
     {
@@ -66,6 +66,13 @@ int main() {
     for(auto i : stllist){
         mylist.push_front(i);
     }
+    mylist.display();
+    while (true) {
+        float data = mylist.pop_front();
+        if (data == 1.0) break; // Stop when the initial data is reached
+        cout << "Popped: " << data << endl;
+    }
+    cout << " remaining data " << endl;
     mylist.display();
     mylist.empty();
     return 0;
