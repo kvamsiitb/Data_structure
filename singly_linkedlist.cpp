@@ -1,17 +1,17 @@
 #include <iostream>
 #include <string>
-#include <bits/stdc++.h>
+#include <list>
 
 using namespace std;
 class Node {
 public:
     Node() = delete;
-    Node(float data):m_next(nullptr), m_data(data){}
+    Node(float data):n_next(nullptr), n_data(data){}
     ~Node(){
-         delete[] m_next;
+         delete n_next;
     }
-    Node* m_next;
-    float m_data;
+    Node* n_next;
+    float n_data;
 };
 
 class SLinkedList{
@@ -19,45 +19,41 @@ class SLinkedList{
 public:
     SLinkedList()=delete;
     // Const
-    SLinkedList(float data)
-    {
-        m_head = new Node(data);
-    }
+    SLinkedList(float data) :  m_head ( new Node(data) {}
     // Push_front
     void push_front(float data)
     {
         Node* temp = new Node(data);
-        temp->m_next = m_head;
+        temp->n_next = m_head;
         m_head = temp;
     }
     //pop_front
     float pop_front(){
-        float r_data = m_head->m_data;
+        float r_data = m_head->n_data;
         Node* temp = m_head;
         // new head
-        m_head = m_head->m_next; 
-        m_head->m_next = nullptr;
+        m_head = m_head->n_next; 
         delete temp; 
         return r_data;
     }
 
     void display(){
         Node* iter = m_head; 
-        while(iter->m_next){
-            cout << iter->m_data << endl;
-            iter = iter->m_next;
+        while(iter->n_next){
+            cout << iter->n_data << endl;
+            iter = iter->n_next;
         }
-        cout << iter->m_data << endl;
+        cout << iter->n_data << endl;
     }
 
     void empty(){
         Node* iter = m_head; 
-        while(iter->m_next){
+        while(iter->n_next){
             Node* delNode = iter;
-            iter = iter->m_next;
-            delete[] delNode;
+            iter = iter->n_next;
+            delete delNode;
         }
-        delete[] iter;
+        delete iter;
     }
 };
 
