@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 #include <list>
 
 using namespace std;
@@ -69,8 +68,8 @@ int main() {
     mylist.display();
     while (true) {
         float data = mylist.pop_front();
-        if (data == 1.0) break; // Stop when the initial data is reached
         cout << "Popped: " << data << endl;
+        if (data == 1.0) break; 
     }
     cout << " remaining data " << endl;
     mylist.display();
