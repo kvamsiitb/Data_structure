@@ -84,55 +84,46 @@ public:
         p_rear = temp;
     }
 
-#if 1 // check again
+#if 1 // error
     void insertPos(int pos, T data){
-        if(pos == 0)
-        {
-          this->push_front(data);
-            return;
-        }
-        else
-        {
-            Node<T>* iter = p_head;
-            int iter_pos = 0;
-            bool found_pos = false;
-            while(iter){
-                if(iter_pos == pos)
-                {
-                  found_pos = true;
-                  Node<T>* temp = new Node(data);
-                  if(iter->n_next == nullptr){
-                      temp->n_prev = p_rear;
-                      p_rear->n_next = temp;
-                      p_rear = temp;
-                  }
-                  else{
-                      temp->n_prev = iter;
-                      temp->n_next = iter->n_next;
-                      if(iter->n_next != nullptr){
-                          iter->n_next->n_prev = temp;
-                      }
-                      iter->n_next = temp;
-                   }
-                    break;
-                 }
-              if( (pos == (iter_pos+1)) && (iter->n_next==nullptr) )
+      if(pos == 0)
+      {
+        this->push_front(data);
+          return;
+      }
+      else
+      {
+          Node<T>* iter = p_head;
+          int iter_pos = 0;
+          bool found_pos = false;
+          while(iter){
+              if( (iter_pos) == (pos-1) )
               {
-                  Node<T>* temp = new Node<T>(data);
-                  temp->n_prev = p_rear;
-                  p_rear->n_next = temp;
-                  p_rear = temp;
-                  found_pos = true;
+                found_pos = true;
+                Node<T>* temp = new Node(data);
+                if(iter->n_next == nullptr){
+                    temp->n_prev = p_rear;
+                    p_rear->n_next = temp;
+                    p_rear = temp;
+                }
+                else{
+                    temp->n_prev = iter;
+                    temp->n_next = iter->n_next;
+                    if(iter->n_next != nullptr){
+                        iter->n_next->n_prev = temp;
+                    }
+                    iter->n_next = temp;
+                 }
                   break;
-              }
-                iter = iter->n_next;
-                iter_pos++;
-            }
-            if(found_pos==false)
-            {
-              cout << " out of range position " << endl;
-            }
-        }
+               }
+              iter = iter->n_next;
+              iter_pos++;
+          }
+          if(found_pos==false)
+          {
+            cout << " out of range position " << endl;
+          }
+      }
     }
 #endif
    
@@ -151,12 +142,12 @@ int main() {
     cout << "Empty" << endl;
     // Test Case 2: Inserting elements at specific positions
     Queue<int> q2(10);
-
     q2.insertPos(1, 20);
     q2.insertPos(2, 30);
     q2.insertPos(1, 40);
-    q2.display();
-    cout << "Expected output: 10 20 40 30" << endl;
+    q2.insertPos(1, -1);
+    q2.display(); // Expected output: 10 40 20 30
+    cout << "Expected output: 10 40 20 30" << endl;
     // Test Case 3: Inserting elements at the last position
     Queue<int> q3(10);
     q3.insertLastPos(20);
