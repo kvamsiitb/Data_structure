@@ -84,7 +84,7 @@ public:
         p_rear = temp;
     }
 
-#if 1 // error
+
     void insertPos(int pos, T data){
       if(pos == 0)
       {
@@ -125,8 +125,7 @@ public:
           }
       }
     }
-#endif
-   
+
 };
 
 
